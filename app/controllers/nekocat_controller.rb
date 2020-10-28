@@ -4,31 +4,48 @@ class NekocatController < ApplicationController
   protect_from_forgery with: :null_session
 
   def webhook
-    # Line Bot API initial
-    client = Line::Bot::Client.new { |config|
-      config.channel_secret = 'dbf120339521248cd77ba07fcfec1541'
-      config.channel_token = 'pAUzHQHj9q5Rd+JYysvToRrhV/QGYxMqB4fWEM0JsnNkPfvdkohFyzXzjXy9Pk9aHMpoRCPgxRIb6fRYK0Dm2xEnLnpLQ1lmKgJGKgHJXDc01DgKRDgxIFAGODp/XZ/vcn3BcQOAJXNz6JPk4dOaUQdB04t89/1O/w1cDnyilFU='
-    }
+    # 設定回覆文字
+    reply_text = keyword_reply(received_text)
 
-    # gey reply token
-    reply_token = params['events'][0]['replyToken']
+    # 傳送訊息到 Line
+    response = reply_to_line(reply_text)
 
-    # set reply message
-    message = {
-      type: 'text',
-      text: '好～喵嗚～'
-    }
-
-    # send message
-    response = client.reply_message(reply_token, message)
-
-    # respond 200
+    # 回應 200
     head :ok
   end
 
-  # def index
-  #   render plain: "罐罐呢？"
-  # end
+  # 取得對方說的話
+  def received_text
+    params['events'][0]['message']['text']
+  end
+
+  # 關鍵字回覆
+  def keyword_reply(received_text)
+    received_text
+  end
+
+  # 傳送訊息到 Line
+  def reply_to_line(message)
+    # 取得 reply token
+    reply_token = params['events'][0]['replyToken']
+
+    # 設定回覆訊息
+    message = {
+      type: 'text',
+      text: reply_text
+    }
+
+    # 傳送訊息
+    line.reply_message(reply_token, message)
+  end
+
+  # Line Bot API object initial
+  def line
+    @line ||= Line::Bot::Client.new { |config|
+      config.channel_secret = 'dbf120339521248cd77ba07fcfec1541'
+      config.channel_token = 'pAUzHQHj9q5Rd+JYysvToRrhV/QGYxMqB4fWEM0JsnNkPfvdkohFyzXzjXy9Pk9aHMpoRCPgxRIb6fRYK0Dm2xEnLnpLQ1lmKgJGKgHJXDc01DgKRDgxIFAGODp/XZ/vcn3BcQOAJXNz6JPk4dOaUQdB04t89/1O/w1cDnyilFU='
+    }
+  end
 
   # def request_headers
   #   render plain: request.headers.to_h.reject{ |key, value| 
