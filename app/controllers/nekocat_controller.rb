@@ -32,7 +32,7 @@ class NekocatController < ApplicationController
   end
 
   # 傳送訊息到 Line
-  def reply_to_line(message)
+  def reply_to_line(reply_text)
     return nil if reply_text.nil?
 
     # 取得 reply token
