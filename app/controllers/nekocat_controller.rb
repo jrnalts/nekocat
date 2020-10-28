@@ -16,16 +16,25 @@ class NekocatController < ApplicationController
 
   # 取得對方說的話
   def received_text
-    params['events'][0]['message']['text']
+    message = params['events'][0]['message']
+    message['text'] if not message.nil?
   end
 
   # 關鍵字回覆
   def keyword_reply(received_text)
-    received_text
+    # 學習紀錄表
+    keyword_mapping = {
+      '好聽的歌' => '夜に駆ける：https://www.youtube.com/watch?v=x8VYWazR5mE'
+    }
+
+    # 查表
+    keyword_mapping[received_text]
   end
 
   # 傳送訊息到 Line
   def reply_to_line(message)
+    return nil if reply_text.nil?
+
     # 取得 reply token
     reply_token = params['events'][0]['replyToken']
 
