@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   get '/nekocat/response_body', to: 'nekocat#show_response_body'
 
   post '/nekocat/webhook', to: 'nekocat#webhook'
+
+  get '/nekocat/sent_request', to: 'nekocat#sent_request'
 end
