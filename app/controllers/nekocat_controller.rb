@@ -34,13 +34,20 @@ class NekocatController < ApplicationController
   end
 
   def sent_request
-    uri = URI('http://localhost:3000/nekocat/response_body')
-    response = Net::HTTP.get(uri).force_encoding("UTF-8")
-    render plain: translate_to_korean(response)
+    uri = URI('http://localhost:3000/nekocat/eat')
+    http = Net::HTTP.new(uri.host, uri.port)
+    http_request = Net::HTTP::Get.new(uri)
+    http_response = http.request(http_request)
+
+    render plain: JSON.pretty_generate({
+      request_class: request.class,
+      response_class: response.class,
+      http_request_class: http_request.class,
+      http_response_class: http_response.class
+    })
   end
 
   def translate_to_korean(message)
     "#{message}油~"
   end
-  
 end
