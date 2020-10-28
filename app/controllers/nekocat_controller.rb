@@ -14,7 +14,7 @@ class NekocatController < ApplicationController
     reply_text = echo2(channel_id, received_text) if reply_text.nil?
 
     # 記錄對話
-    save_to_received(channel_id, received_text)\
+    save_to_received(channel_id, received_text)
     save_to_reply(channel_id, reply_text)
 
     # 傳送訊息到 Line
