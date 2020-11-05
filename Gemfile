@@ -27,15 +27,22 @@ gem 'jbuilder', '~> 2.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+
+# Heroku 部署需求 Postgresql
 gem 'pg', '~> 1.2', '>= 1.2.3'
+
+# Line chatbot
 gem 'line-bot-api', '~> 1.16'
+
+# 儲存敏感資料
+gem 'figaro', '~> 1.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'hirb', '~> 0.7.3'
   
-  # 測試
+  # Rspec 測試
   gem 'rspec-rails', '~> 4.0', '>= 4.0.1'
   gem 'factory_bot_rails', '~> 6.1'
   gem 'shoulda-matchers', '~> 4.4', '>= 4.4.1'

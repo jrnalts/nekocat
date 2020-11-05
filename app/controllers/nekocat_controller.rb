@@ -113,8 +113,8 @@ class NekocatController < ApplicationController
   # Line Bot API initialize
   def line
     @line ||= Line::Bot::Client.new { |config|
-      config.channel_secret = 'dbf120339521248cd77ba07fcfec1541'
-      config.channel_token = 'pAUzHQHj9q5Rd+JYysvToRrhV/QGYxMqB4fWEM0JsnNkPfvdkohFyzXzjXy9Pk9aHMpoRCPgxRIb6fRYK0Dm2xEnLnpLQ1lmKgJGKgHJXDc01DgKRDgxIFAGODp/XZ/vcn3BcQOAJXNz6JPk4dOaUQdB04t89/1O/w1cDnyilFU='
+      config.channel_secret = ENV['line_channel_secret']
+      config.channel_token = ENV['line_channel_token']
     }
   end
 
