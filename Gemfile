@@ -37,6 +37,9 @@ gem 'line-bot-api', '~> 1.16'
 # 儲存敏感資料
 gem 'figaro', '~> 1.2'
 
+# 設定多國語系
+gem 'i18n'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

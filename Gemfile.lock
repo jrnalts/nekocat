@@ -265,6 +265,7 @@ DEPENDENCIES
   faker (~> 2.14)
   figaro (~> 1.2)
   hirb (~> 0.7.3)
+  i18n
   jbuilder (~> 2.7)
   line-bot-api (~> 1.16)
   listen (~> 3.2)
