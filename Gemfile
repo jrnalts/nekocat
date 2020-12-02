@@ -36,6 +36,9 @@ gem 'figaro', '~> 1.2'
 # 設定多國語系
 gem 'i18n'
 
+# 會員系統
+gem 'devise'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
