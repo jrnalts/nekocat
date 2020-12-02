@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :keyword_mappings
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get '/nekocat/index', to: 'nekocat#index'
   get '/nekocat/request_headers', to: 'nekocat#request_headers'
